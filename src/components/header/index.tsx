@@ -1,19 +1,28 @@
-export function Header() {
+import type { JSX } from "react";
+import { ButtonsHeader } from "./buttonsHeader";
+import { Logo } from "./logo";
+import { Profile } from "./profile";
+import { NewScheduling } from "./newScheduling";
+
+type buttons = {
+  name: string;
+  link: string;
+  icon: JSX.Element;
+};
+
+type HeaderProps = {
+  buttons: buttons[];
+};
+
+export function Header({ buttons }: HeaderProps) {
   return (
-    <div className="mx-[1em] my-[0.5em] flex justify-between">
-      <div className="">
-        <h1 className="text-2xl font-bold text-orange-800">Greatest System</h1>
-      </div>
-      <div className="center--side">
-        <button className="text-2xl font-bold text-800">Agenda</button>
-      </div>
-      <div className="flex distance--between--right--side gap-4">
-        <div className="text--right--side">
-          <p>nome nome</p>
-          <p>cargo dele</p>
-        </div>
-        <img src="path/to/image.jpg" alt="foto perfil" />
-      </div>
+    <div className="flex flex-col h-screen gap-4">
+      <Logo />
+      <hr className="w-full" />
+      <Profile />
+      <hr className="w-full" />
+      <ButtonsHeader buttons={buttons} />
+      <NewScheduling />
     </div>
   );
 }
