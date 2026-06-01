@@ -1,44 +1,35 @@
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Header } from "./components/header";
 import { FaHome } from "react-icons/fa";
-import { GrSchedules } from "react-icons/gr";
+import { GrSchedules, GrConfigure } from "react-icons/gr";
 import { MdOutlinePeopleOutline } from "react-icons/md";
 import { VscGraphScatter } from "react-icons/vsc";
-import { GrConfigure } from "react-icons/gr";
+import { Inicio } from "./pages/inicio";
+import { Pacientes } from "./pages/pacientes";
+
+const buttonsHeader = [
+  { name: "Início", link: "/inicio", icon: <FaHome /> },
+  { name: "Agendamentos", link: "/agendamentos", icon: <GrSchedules /> },
+  { name: "Pacientes", link: "/pacientes", icon: <MdOutlinePeopleOutline /> },
+  { name: "Relatórios", link: "/relatorios", icon: <VscGraphScatter /> },
+  { name: "Configurações", link: "/configuracoes", icon: <GrConfigure /> },
+];
 
 function App() {
-  const buttonsHeader = [
-    {
-      name: "Início",
-      link: "/inicio",
-      icon: <FaHome />,
-    },
-    {
-      name: "Agendamentos",
-      link: "/agendamentos",
-      icon: <GrSchedules />,
-    },
-    {
-      name: "Pacientes",
-      link: "/pacientes",
-      icon: <MdOutlinePeopleOutline />,
-    },
-    {
-      name: "Relatórios",
-      link: "/relatorios",
-      icon: <VscGraphScatter />,
-    },
-    {
-      name: "Configurações",
-      link: "/configuracoes",
-      icon: <GrConfigure />,
-    },
-  ];
   return (
-    <div className="flex display flex">
-      <section className="w-72 bg-[#36D6B3] bg-[linear-gradient(123deg,rgba(54,214,179,1)_40%,rgba(3,161,159,1)_66%,rgba(0,158,158,1)_93%)]">
+    <BrowserRouter>
+      <div className="flex h-screen bg-[#F7F8FA]">
         <Header buttons={buttonsHeader} />
-      </section>
-    </div>
+        <div className="flex-1 overflow-y-auto px-10 py-8">
+          <Routes>
+            <Route path="/" element={<Navigate to="/inicio" />} />
+            <Route path="/inicio" element={<Inicio />} />
+            {/* <Route path="/agendamentos" element={<Agendamentos />} /> */}
+            <Route path="/pacientes" element={<Pacientes />} />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
