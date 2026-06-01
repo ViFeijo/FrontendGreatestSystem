@@ -2,7 +2,6 @@ import type { JSX } from "react";
 import { ButtonsHeader } from "./buttonsHeader";
 import { Logo } from "./logo";
 import { Profile } from "./profile";
-import { NewScheduling } from "./newScheduling";
 
 type buttons = {
   name: string;
@@ -16,13 +15,10 @@ type HeaderProps = {
 
 export function Header({ buttons }: HeaderProps) {
   return (
-    <div className="flex flex-col h-screen gap-4">
+    <div className="flex flex-col h-screen w-[240px] min-w-[240px] bg-white border-r-2 border-[#B0B5C3]">
       <Logo />
-      <hr className="w-full" />
       <Profile />
-      <hr className="w-full" />
       <ButtonsHeader buttons={buttons} />
-      <NewScheduling />
     </div>
   );
 }
