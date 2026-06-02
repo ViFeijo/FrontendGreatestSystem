@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import { ButtonsHeader } from "./buttonsHeader";
+import { Buttons } from "../../componentes/buttonsHeader";
 import { Logo } from "./logo";
 import { Profile } from "./profile";
 
@@ -18,7 +18,7 @@ export function Header({ buttons }: HeaderProps) {
     <div className="flex flex-col h-screen w-[240px] min-w-[240px] bg-white border-r-2 border-[#B0B5C3]">
       <Logo />
       <Profile />
-      <ButtonsHeader buttons={buttons} />
+      <Buttons buttons={buttons} />
     </div>
   );
 }

@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Header } from "./components/header";
+import { Header } from "./pages/inicio/inicioComponents/header";
 import { FaHome } from "react-icons/fa";
 import { GrSchedules, GrConfigure } from "react-icons/gr";
 import { MdOutlinePeopleOutline } from "react-icons/md";
 import { VscGraphScatter } from "react-icons/vsc";
-import { Inicio } from "./pages/inicio";
-import { Pacientes } from "./pages/pacientes";
+import { Inicio } from "./pages/inicio/inicio";
+import { Pacientes } from "./pages/pacientes/pacientes";
+import { Relatorios } from "./pages/relatorios";
+import { Configuracoes } from "./pages/configuracoes/configuracoes";
 
 const buttonsHeader = [
   { name: "Início", link: "/inicio", icon: <FaHome /> },
@@ -24,8 +26,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/inicio" />} />
             <Route path="/inicio" element={<Inicio />} />
-            {/* <Route path="/agendamentos" element={<Agendamentos />} /> */}
+            <Route path="/configuracoes" element={<Configuracoes />} />
             <Route path="/pacientes" element={<Pacientes />} />
+            <Route path="/relatorios" element={<Relatorios />} />
           </Routes>
         </div>
       </div>

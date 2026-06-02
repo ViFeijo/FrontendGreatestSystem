@@ -1,7 +1,7 @@
-import { Saudacoes } from "./../components/saudacoes";
-import { NewScheduling } from "./../components/header/newScheduling";
-import { InfoBox } from "./../components/infoBox";
-import { ConsultasAgendadas } from "./../components/consultas";
+import { Saudacoes } from "./inicioComponents/saudacoes";
+import { DefaultButton } from "./componentes/newScheduling";
+import { InfoBox } from "./inicioComponents/infoBox";
+import { ConsultasAgendadas } from "./inicioComponents/consultas";
 
 export function Inicio() {
   const consultas = [
@@ -47,7 +47,7 @@ export function Inicio() {
     <>
       <section className="flex justify-between items-center">
         <Saudacoes nome="Sigminha" />
-        <NewScheduling />
+        <DefaultButton buttonProp="+ Nova Consulta" />
       </section>
       <section className="flex gap-4 mt-8 w-full">
         <InfoBox dias={12} descricao="Consultas para hoje." />

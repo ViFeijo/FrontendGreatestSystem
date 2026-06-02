@@ -11,7 +11,7 @@ type HeaderProps = {
   buttons: buttons[];
 };
 
-export function ButtonsHeader({ buttons }: HeaderProps) {
+export function Buttons({ buttons }: HeaderProps) {
   const { pathname } = useLocation();
 
   return (
@@ -28,7 +28,7 @@ export function ButtonsHeader({ buttons }: HeaderProps) {
             }`}
         >
           <span className="w-5 h-5 flex items-center justify-center">
-            {button.icon}
+            {button.icon?.type ? button.icon : null}
           </span>
           {button.name}
         </Link>

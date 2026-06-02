@@ -6,6 +6,7 @@ export function Pacientes() {
     {
       nome: "João Silva",
       email: "joaosilva@gmail.com",
+      idade: 30,
       telefone: "(11) 98765-4321",
       ultimoAtendimento: "2024-05-15",
       proximaConsulta: "2024-06-20",
@@ -13,6 +14,7 @@ export function Pacientes() {
     {
       nome: "Maria Santos",
       email: "mariasantos@gmail.com",
+      idade: 25,
       telefone: "(11) 98765-4321",
       ultimoAtendimento: "2024-05-15",
       proximaConsulta: "2024-06-20",

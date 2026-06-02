@@ -3,10 +3,13 @@ export function Lista({ pacientes }: { pacientes: any[] }) {
     <div className="w-full">
       <div className="bg-white border-2 border-[#B0B5C3] rounded-[16px] overflow-hidden">
         <table className="w-full text-sm">
-          <thead>
+          <thead className="mx-4">
             <tr className="border-b-2 border-[#B0B5C3]">
               <th className="px-4 py-3 text-left text-[#8A8FA3] font-medium">
                 Nome
+              </th>
+              <th className="px-4 py-3 text-left text-[#8A8FA3] font-medium">
+                Idade
               </th>
               <th className="px-4 py-3 text-left text-[#8A8FA3] font-medium">
                 Telefone
@@ -38,6 +41,7 @@ export function Lista({ pacientes }: { pacientes: any[] }) {
                     </div>
                   </div>
                 </td>
+                <td className="px-4 py-4 text-[#4B5563]">{p.idade}</td>
                 <td className="px-4 py-4 text-[#4B5563]">{p.telefone}</td>
                 <td className="px-4 py-4 text-[#4B5563]">
                   {p.ultimoAtendimento}
