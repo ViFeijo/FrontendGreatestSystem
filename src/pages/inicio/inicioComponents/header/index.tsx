@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import { Buttons } from "../../componentes/buttonsHeader";
+import { Buttons } from "../../../componentes/botaoHeader";
 import { Logo } from "./logo";
 import { Profile } from "./profile";
 

@@ -1,5 +1,5 @@
 import { Saudacoes } from "./inicioComponents/saudacoes";
-import { DefaultButton } from "./componentes/newScheduling";
+import { DefaultButton } from "../componentes/newScheduling";
 import { InfoBox } from "./inicioComponents/infoBox";
 import { ConsultasAgendadas } from "./inicioComponents/consultas";
 
