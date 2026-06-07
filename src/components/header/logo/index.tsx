@@ -20,20 +20,23 @@ export function Logo() {
     }
   }, [modoescuro]);
   return (
-    <div className="flex items-center px-5 py-4 gap-3 border-b-2 border-[#B0B5C3]">
-      <div className="w-9 h-9 bg-[#1CC88A] rounded-[10px] flex items-center justify-center">
+    <div className="flex items-center px-5 py-4 gap-3 border-b-2 border-(--border)">
+      <div className="w-9 h-9 bg-(--primary) rounded-[10px] flex items-center justify-center">
         <img src="https://chatgpt.com/" alt="logo" className="w-5 h-5" />
       </div>
       <div className="flex-1">
-        <h1 className="text-base font-bold text-[#1A1D23] leading-tight">
+        <h1 className="text-base font-bold text-(--text-primary) leading-tight">
           GMS
         </h1>
-        <h2 className="text-xs font-normal text-[#8A8FA3] leading-tight">
+        <h2 className="text-xs font-normal text-(--text-secondary) leading-tight">
           Greatest Med
         </h2>
       </div>
       <div>
-        <FaRegMoon onClick={mudaTema} className="text-[#8A8FA3] w-4 h-4" />
+        <FaRegMoon
+          onClick={mudaTema}
+          className="text-(--text-secondary) w-4 h-4 cursor-pointer"
+        />
       </div>
     </div>
   );

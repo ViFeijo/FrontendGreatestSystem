@@ -1,1 +1,64 @@
 @import "tailwindcss";
+
+html,
+body {
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+}
+:root {
+  --background: #ffffff;
+  --foreground: #111827;
+  --header-bg: #ffffff;
+  --surface: #f8fafc;
+  --card: #ffffff;
+  --card-elevated: #f1f5f9;
+  --border: #e2e8f0;
+  --hover: #f1f5f9;
+
+  --text-primary: #111827;
+  --text-secondary: #64748b;
+  --text-auxiliary: #94a3b8;
+  --text-disabled: #cbd5e1;
+
+  --primary: #36d6b3;
+  --primary-hover: #2fc2a3;
+  --primary-foreground: #0f172a;
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+
+  --input-bg: #ffffff;
+  --input-border: #e2e8f0;
+  --input-text: #111827;
+  --input-placeholder: #94a3b8;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --header-bg: #0f172a;
+  --surface: #111827;
+  --card: #1e293b;
+  --card-elevated: #273449;
+  --border: #334155;
+  --hover: #2d3a4f;
+
+  --text-primary: #f8fafe;
+  --text-secondary: #cbd5e1;
+  --text-auxiliary: #94a3b8;
+  --text-disabled: #64748b;
+
+  --primary: #36d6b3;
+  --primary-hover: #2fc2a3;
+  --primary-foreground: #0f172a;
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+
+  --input-bg: #273449;
+  --input-border: #334155;
+  --input-text: #f8fafe;
+  --input-placeholder: #94a3b8;
+}

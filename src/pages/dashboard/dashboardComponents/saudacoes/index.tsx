@@ -11,8 +11,8 @@ export function Saudacoes({ nome }: { nome: string }) {
   }, []);
   return (
     <div className="flex flex-col items-start gap-2">
-      <h1 className="text-2xl font-bold">Olá {nome}</h1>
-      <h2 className="text-lg text-gray-600">
+      <h1 className="text-2xl font-bold text-(--text-primary)">Olá {nome}</h1>
+      <h2 className="text-lg text-(--text-secondary)">
         {data.toLocaleDateString("pt-BR", {
           weekday: "long",
           day: "numeric",
