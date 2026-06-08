@@ -9,6 +9,7 @@ import { Pacientes } from "./pages/pacientes/pacientes";
 import { Relatorios } from "./pages/relatorios";
 import { Configuracoes } from "./pages/configuracoes/configuracoes";
 import { SignUp } from "./pages/signUp";
+import { Login } from "./pages/login";
 
 const buttonsHeader = [
   { name: "Início", link: "/dashboard", icon: <FaHome /> },
@@ -32,6 +33,7 @@ function App() {
 
         <div className="flex-1 overflow-y-auto overflow-x-hidden">
           <Routes>
+            <Route path="/login" element={<Login />} />
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/" element={<Navigate to="/dashboard" />} />
             <Route path="/dashboard" element={<Dashboard />} />

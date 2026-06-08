@@ -10,6 +10,8 @@ import { AiTwotoneSchedule } from "react-icons/ai";
 import { GrGroup } from "react-icons/gr";
 import { TbWriting } from "react-icons/tb";
 import { LuClipboardPen } from "react-icons/lu";
+import { FaShieldAlt } from "react-icons/fa";
+import { FaArrowsRotate } from "react-icons/fa6";
 
 const iconsObj = {
   email: MdOutlineMail,
@@ -24,6 +26,8 @@ const iconsObj = {
   activePatients: GrGroup,
   writting: TbWriting,
   clipboard: LuClipboardPen,
+  shield: FaShieldAlt,
+  arrowsRotating: FaArrowsRotate,
 };
 
 export default iconsObj;

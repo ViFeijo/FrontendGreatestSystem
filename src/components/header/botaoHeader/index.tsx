@@ -2,9 +2,9 @@ import { Link, useLocation } from "react-router-dom";
 import type { JSX } from "react/jsx-dev-runtime";
 
 type buttons = {
-  name: string;
-  link: string;
-  icon: JSX.Element;
+  name?: string;
+  link?: string;
+  icon?: JSX.Element;
 };
 
 type HeaderProps = {

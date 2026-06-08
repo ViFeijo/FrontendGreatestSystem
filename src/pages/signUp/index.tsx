@@ -2,6 +2,8 @@ import { Input } from "../../components/input";
 import iconsObj from "../../assets/icons";
 import { useState } from "react";
 import { useSignUp } from "./hook";
+import logo from "../../assets/img/logo.png";
+import { Link } from "react-router-dom";
 
 export function SignUp() {
   const [nome, setNome] = useState("");
@@ -21,7 +23,9 @@ export function SignUp() {
   return (
     <>
       <div className="flex flex-col items-center justify-center h-screen">
-        <div>/*imagem aqui*/</div>
+        <div>
+          <img src={logo}></img>
+        </div>
 
         <div className="mt-4 px-12 py-16 border border-gray-200 rounded-2xl bg-white max-w-sm mx-auto ">
           <p className="text-xl font-serif font-bold text-[#04342c] mb-1">
@@ -108,6 +112,11 @@ export function SignUp() {
           >
             Criar conta →
           </button>
+          <div className="w-full hover:text-white text-sm font-medium py-3 rounded-xl mt-5 transition-all">
+            <Link to="/login">
+              <p className="text-center  text-black">Já tens conta?</p>
+            </Link>
+          </div>
         </div>
       </div>
     </>
