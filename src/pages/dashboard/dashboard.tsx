@@ -3,6 +3,7 @@ import { DefaultButton } from "../../components/button";
 import { InfoBox } from "./dashboardComponents/infoBox";
 import { ConsultasAgendadas } from "./dashboardComponents/consultas";
 import iconsObj from "../../assets/icons";
+import { Modal } from "../../components/modal/modal";
 
 export function Dashboard() {
   const doctor = JSON.parse(localStorage.getItem("doctor") || "{}");
@@ -86,6 +87,7 @@ export function Dashboard() {
           infoIcon={iconsObj.clipboard}
         />
       </section>
+      <Modal />
       <section className="mt-8 max-w-[70%]">
         <ConsultasAgendadas consultas={consultas} />
       </section>

@@ -39,7 +39,7 @@ export function Input({
     <div className={divide ? "w-1/2" : "w-full"}>
       <div className={inputContainerClass}>
         <Icon
-          className={`${icone ? "text-(--text-primary)" : "text-(--primary)"} w-4 h-4 shrink-0`}
+          className={`${icone ? "text-(--text-primary)" : "text-(--primary)"} w-4 h-4 shrink-0 {mostrarLupa? block || hidde}`}
         />
         <input
           type={type || "text"}
