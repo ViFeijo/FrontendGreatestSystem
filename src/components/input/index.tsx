@@ -9,6 +9,7 @@ export function Input({
   icone,
   divide,
   mudarBorda,
+  inputEmail,
 }: {
   placeholder: string;
   value: string;
@@ -18,17 +19,19 @@ export function Input({
   icone?: IconType;
   divide?: boolean;
   mudarBorda?: boolean;
+  inputEmail?: boolean;
 }) {
   const Icon = icone || FaSearch;
   const inputContainerClass = `
     flex 
     items-center 
     rounded-[12px]
-    bg-(--input-bg) px-4
+    px-4
     py-2.5
     gap-3
     w-full
     my-2
+    ${inputEmail ? "bg-transparent" : "bg-(--input-bg)"}
     ${mudarBorda ? "border-1 border-(--border)" : "border-2 border-(--primary)"}
   `;
 

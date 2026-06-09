@@ -1,4 +1,5 @@
 import api from "../../../services/api";
+import { useNavigate } from "react-router-dom";
 
 type UseLoginProp = {
   email: string;
@@ -6,12 +7,16 @@ type UseLoginProp = {
 };
 
 export function useLogin() {
-  function login({ email, password }: UseLoginProp) {
+  const navigate = useNavigate();
+  async function login({ email, password }: UseLoginProp) {
     try {
-      api.post("/auth/doctor/login", {
+      const response = await api.post("/auth/doctor/login", {
         email: email,
         password: password,
       });
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("doctor", JSON.stringify(response.data.doctor));
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
     }

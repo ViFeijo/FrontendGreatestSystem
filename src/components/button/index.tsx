@@ -10,6 +10,7 @@ export function DefaultButton({
   buttonIcon?: IconType;
   isDashboardButton?: boolean;
   swappColor?: boolean;
+  onClick?: () => void;
 }) {
   const Icon = buttonIcon;
   const buttonClass = `

@@ -18,15 +18,15 @@ export function Login() {
           <img src={logo}></img>
         </div>
 
-        <div className="mt-4 px-12 py-16 border border-gray-200 rounded-2xl bg-white max-w-sm mx-auto ">
-          <p className="text-xl font-serif font-bold text-[#04342c] mb-1">
+        <div className="mt-4 px-12 py-16 border border-(--border) rounded-2xl bg-(--card) max-w-sm mx-auto">
+          <p className="text-xl font-serif font-bold text-(--text-primary) mb-1">
             Criar Conta Médica
           </p>
-          <p className="text-xs text-[#5a7a71] mb-6 font-light">
+          <p className="text-xs text-(--text-secondary) mb-6 font-light">
             Preencha seus dados para acessar a plataforma clínica.
           </p>
 
-          <span className="text-[11px] font-medium text-[#9fbfb7] tracking-widest uppercase mb-2 block">
+          <span className="text-[11px] font-medium text-(--text-auxiliary) tracking-widest uppercase mb-2 block">
             Dados pessoais(Obrigatórios)
           </span>
 
@@ -38,6 +38,7 @@ export function Login() {
               mudarBorda={true}
               value={email}
               onChange={setEmail}
+              inputEmail={true}
             />
             <Input
               placeholder="Digite sua senha"
@@ -52,7 +53,7 @@ export function Login() {
 
           <button
             onClick={handleClick}
-            className="w-full bg-[#0f6e56] hover:bg-[#085041] text-white text-sm font-medium py-3 rounded-xl mt-5 transition-all"
+            className="w-full bg-(--primary) hover:bg-(--primary-hover) text-(--primary-foreground) text-sm font-medium py-3 rounded-xl mt-5 transition-all"
           >
             Entrar na conta →
           </button>

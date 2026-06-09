@@ -5,6 +5,8 @@ import { ConsultasAgendadas } from "./dashboardComponents/consultas";
 import iconsObj from "../../assets/icons";
 
 export function Dashboard() {
+  const doctor = JSON.parse(localStorage.getItem("doctor") || "{}");
+  console.log(doctor.name);
   const consultas = [
     {
       nome: "João Silva",
@@ -47,7 +49,7 @@ export function Dashboard() {
   return (
     <section className="flex flex-col items-start gap-8 p-8 mt-5">
       <div className="flex justify-between w-full">
-        <Saudacoes nome="Sigminha" />
+        <Saudacoes nome={doctor.name} />
         <div className="flex gap-4 items-end">
           <DefaultButton
             buttonIcon={iconsObj.addPerson}
