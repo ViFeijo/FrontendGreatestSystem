@@ -1,51 +1,21 @@
 import { Saudacoes } from "./dashboardComponents/saudacoes";
 import { DefaultButton } from "../../components/button";
 import { InfoBox } from "./dashboardComponents/infoBox";
-import { ConsultasAgendadas } from "./dashboardComponents/consultas";
 import iconsObj from "../../assets/icons";
-import { Modal } from "../../components/modal/modal";
+import { CreatePatientModal } from "./dashboardComponents/dashboardComponentsModals/CreatePatientModal";
+
+import { useState } from "react";
+import { CreateAppointmentsModal } from "./dashboardComponents/dashboardComponentsModals/CreateAppointments";
 
 export function Dashboard() {
   const doctor = JSON.parse(localStorage.getItem("doctor") || "{}");
-  console.log(doctor.name);
-  const consultas = [
-    {
-      nome: "João Silva",
-      horario: "10:00",
-      status: "Confirmada",
-      situacao: "Primeira consulta",
-    },
-    {
-      nome: "Maria Oliveira",
-      horario: "11:30",
-      status: "Aguardando",
-      situacao: "Urgência",
-    },
-    {
-      nome: "Carlos Santos",
-      horario: "14:00",
-      status: "Confirmada",
-      situacao: "Retorno",
-    },
-    {
-      nome: "João Silva",
-      horario: "10:00",
-      status: "Confirmada",
-      situacao: "Primeira consulta",
-    },
-    {
-      nome: "Maria Oliveira",
-      horario: "11:30",
-      status: "Aguardando",
-      situacao: "Urgência",
-    },
-    {
-      nome: "Carlos Santos",
-      horario: "14:00",
-      status: "Confirmada",
-      situacao: "Retorno",
-    },
-  ];
+  const [activePatients, setActivePatients] = useState(0);
+  function patientCreated() {
+    setActivePatients(activePatients + 1);
+  }
+  const [activeModal, setActiveModal] = useState<
+    "patient" | "appointment" | null
+  >(null);
 
   return (
     <section className="flex flex-col items-start gap-8 p-8 mt-5">
@@ -54,14 +24,16 @@ export function Dashboard() {
         <div className="flex gap-4 items-end">
           <DefaultButton
             buttonIcon={iconsObj.addPerson}
+            variant={"secondary"}
+            size={"dashboard"}
             buttonText="Novo paciente"
-            isDashboardButton={true}
-            swappColor={true}
+            onClick={() => setActiveModal("patient")}
           />
           <DefaultButton
             buttonIcon={iconsObj.plusCircle}
             buttonText=" Nova consulta"
-            isDashboardButton={true}
+            size={"dashboard"}
+            onClick={() => setActiveModal("appointment")}
           />
         </div>
       </div>
@@ -72,12 +44,12 @@ export function Dashboard() {
           infoIcon={iconsObj.todayConsultation}
         />
         <InfoBox
-          confirmadas={2042}
+          confirmadas={activePatients}
           descricao="Pacientes ativos."
           infoIcon={iconsObj.activePatients}
         />
         <InfoBox
-          pacientes={50}
+          pacientes={100}
           descricao="Prontuarios criados."
           infoIcon={iconsObj.activePatients}
         />
@@ -87,10 +59,22 @@ export function Dashboard() {
           infoIcon={iconsObj.clipboard}
         />
       </section>
-      <Modal />
-      <section className="mt-8 max-w-[70%]">
+
+      {/*MODAIS*/}
+      <CreatePatientModal
+        isOpen={activeModal === "patient"}
+        toggleModal={() => setActiveModal(null)}
+        setPatients={patientCreated}
+      />
+      <CreateAppointmentsModal
+        isOpen={activeModal === "appointment"}
+        toggleModal={() => setActiveModal(null)}
+      />
+      {/**/}
+
+      {/*<section className="mt-8 max-w-[70%]">
         <ConsultasAgendadas consultas={consultas} />
-      </section>
+      </section>*/}
     </section>
   );
 }
