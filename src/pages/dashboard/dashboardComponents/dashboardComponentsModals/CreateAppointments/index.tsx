@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Input } from "../../../../../components/input";
 import { DefaultButton } from "../../../../../components/button";
 import { ModalBase } from "../../../../../components/BaseModal/modal";
-
 import { useAppointment } from "../../../../../hooks/useAppointments";
 import { usePatients } from "../../../../../hooks/usePatients";
 
@@ -33,11 +32,11 @@ export function CreateAppointmentsModal({
   const doctor = JSON.parse(localStorage.getItem("doctor") || "{}");
 
   const [patientsInfo, setPatientsInfo] = useState<Patient[]>([]);
+
   async function showPatient() {
     const infos = await getPatientInfo(name);
     setPatientsInfo(infos);
     setIsHidden(false);
-    console.log(patientsInfo);
   }
 
   function resetError() {
@@ -45,6 +44,7 @@ export function CreateAppointmentsModal({
       setErrorMessage("");
     }, 5000);
   }
+
   function verifyLength() {
     if (
       name.length < 3 ||
@@ -59,9 +59,10 @@ export function CreateAppointmentsModal({
       handlePostAppointments();
     }
   }
-  function handlePostAppointments() {
+
+  async function handlePostAppointments() {
     try {
-      postAppointment({
+      await postAppointment({
         id,
         doctorId: doctor.id,
         title,
@@ -77,40 +78,39 @@ export function CreateAppointmentsModal({
 
   return (
     <ModalBase isOpen={isOpen} onClose={toggleModal} title="Nova consulta">
-      <div className="flex flex-col">
-        <Input
-          placeholder="Nome completo do paciente"
-          mostrarLupa={false}
-          value={name}
-          onChange={(value) => {
-            setName(value);
-
-            if (value.length < 3) {
-              setPatientsInfo([]);
-              setIsHidden(true);
-              return;
-            }
-
-            showPatient();
-          }}
-        />
-
-        <div className={`cursor-pointer ${isHidden ? "hidden" : "block"}`}>
-          {patientsInfo.map((patient) => {
-            return (
-              <button
-                key={patient.id}
-                className="flex"
-                onClick={() => {
-                  setName(patient.name);
-                  setId(patient.id);
-                  setIsHidden(true);
-                }}
-              >
-                {patient.name}
-              </button>
-            );
-          })}
+      <div className="flex flex-col gap-3">
+        <div className="relative">
+          <Input
+            placeholder="Nome completo do paciente"
+            mostrarLupa={false}
+            value={name}
+            onChange={(value) => {
+              setName(value);
+              if (value.length < 3) {
+                setPatientsInfo([]);
+                setIsHidden(true);
+                return;
+              }
+              showPatient();
+            }}
+          />
+          {!isHidden && patientsInfo.length > 0 && (
+            <div className="absolute z-10 w-full mt-1 bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden shadow-lg">
+              {patientsInfo.map((patient) => (
+                <button
+                  key={patient.id}
+                  className="w-full text-left px-4 py-2.5 text-sm text-[var(--text-primary)] hover:bg-[var(--hover)] transition-colors duration-100 border-b border-[var(--border)] last:border-0"
+                  onClick={() => {
+                    setName(patient.name);
+                    setId(patient.id);
+                    setIsHidden(true);
+                  }}
+                >
+                  {patient.name}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         <Input
@@ -126,7 +126,7 @@ export function CreateAppointmentsModal({
           onChange={setTitle}
         />
         <Input
-          placeholder="Nome da cidade"
+          placeholder="Data da consulta"
           mostrarLupa={false}
           value={date}
           onChange={setDate}
@@ -145,13 +145,15 @@ export function CreateAppointmentsModal({
           onChange={setEndTime}
         />
       </div>
-      <div className="flex justify-center m-[0.5em]">
+
+      <div className="flex justify-center m-[0.5em] mt-4">
         <DefaultButton
-          buttonText="Salvar paciente"
+          buttonText="Salvar consulta"
           onClick={verifyLength}
           size={"modal"}
         />
       </div>
+
       <p className="text-(--error)">{errorMessage}</p>
     </ModalBase>
   );

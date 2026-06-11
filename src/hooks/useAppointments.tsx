@@ -19,12 +19,12 @@ export function useAppointment() {
     endTime,
   }: Appointments) {
     await api.post("/appointments", {
-      patientId: id,
-      doctorId,
+      patient_id: id,
+      doctor_id: doctorId,
       title,
       date,
-      startTime,
-      endTime,
+      start_time: startTime,
+      end_time: endTime,
     });
   }
 

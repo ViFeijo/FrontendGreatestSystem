@@ -9,11 +9,11 @@ export function InfoBox({
   infoIcon,
 }: {
   dias?: number;
-  confirmadas?: number;
+  confirmadas?: string;
   pacientes?: number;
   aguardando?: number;
   descricao: string;
-  infoIcon: IconType;
+  infoIcon?: IconType;
 }) {
   const valor = dias ?? confirmadas ?? pacientes ?? aguardando;
   const InfoIcon = infoIcon;
@@ -22,7 +22,7 @@ export function InfoBox({
       <div className="flex-1 rounded-[16px] flex flex-col gap-2 h-36 border border-(--border) bg-(--card)">
         <div className="ml-[2em] mt-[1em]">
           <h2 className="text-xl font-bold text-[var(--text-primary)]">
-            <InfoIcon />
+            {InfoIcon && <InfoIcon />}
           </h2>
           <h3 className="text-[11px] tracking-widest uppercase mt-1 text-[var(--text-secondary)]">
             {descricao}

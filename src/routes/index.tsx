@@ -5,7 +5,8 @@ import { Login } from "../pages/login";
 import { SignUp } from "../pages/signUp";
 import { Configuracoes } from "../pages/configuracoes/configuracoes";
 import { Pacientes } from "../pages/pacientes/pacientes";
-import { Relatorios } from "../pages/relatorios";
+import { Evolutions } from "../pages/relatorios";
+import { PatientEvolution } from "../pages/SingularEvolution";
 
 export function AppRoutes() {
   return (
@@ -40,7 +41,15 @@ export function AppRoutes() {
         path="/relatorios"
         element={
           <ProtectedRoute>
-            <Relatorios />
+            <Evolutions />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/evolucao/:id"
+        element={
+          <ProtectedRoute>
+            <PatientEvolution />
           </ProtectedRoute>
         }
       />

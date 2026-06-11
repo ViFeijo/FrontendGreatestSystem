@@ -3,16 +3,20 @@ import { DefaultButton } from "../../components/button";
 import { InfoBox } from "./dashboardComponents/infoBox";
 import iconsObj from "../../assets/icons";
 import { CreatePatientModal } from "./dashboardComponents/dashboardComponentsModals/CreatePatientModal";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CreateAppointmentsModal } from "./dashboardComponents/dashboardComponentsModals/CreateAppointments";
+import { useDoctorPatients } from "../../hooks/useDoctorPatients";
 
 export function Dashboard() {
   const doctor = JSON.parse(localStorage.getItem("doctor") || "{}");
-  const [activePatients, setActivePatients] = useState(0);
-  function patientCreated() {
-    setActivePatients(activePatients + 1);
-  }
+  const { getDoctorPatientByDoc } = useDoctorPatients();
+
+  const [numsPatients, setNumsPatients] = useState([]);
+  useEffect(() => {
+    getDoctorPatientByDoc(doctor.id).then(setNumsPatients);
+  }, []);
+  console.log(numsPatients);
+
   const [activeModal, setActiveModal] = useState<
     "patient" | "appointment" | null
   >(null);
@@ -44,7 +48,7 @@ export function Dashboard() {
           infoIcon={iconsObj.todayConsultation}
         />
         <InfoBox
-          confirmadas={activePatients}
+          confirmadas={numsPatients.length}
           descricao="Pacientes ativos."
           infoIcon={iconsObj.activePatients}
         />
@@ -64,7 +68,6 @@ export function Dashboard() {
       <CreatePatientModal
         isOpen={activeModal === "patient"}
         toggleModal={() => setActiveModal(null)}
-        setPatients={patientCreated}
       />
       <CreateAppointmentsModal
         isOpen={activeModal === "appointment"}

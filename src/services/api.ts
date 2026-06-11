@@ -4,9 +4,6 @@ const api = axios.create({
   baseURL: "http://13.216.250.227:3010/",
 });
 
-{
-  /*roda antes de toda req*/
-}
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {

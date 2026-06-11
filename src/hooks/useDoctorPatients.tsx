@@ -19,8 +19,9 @@ export function useDoctorPatients() {
   }
 
   async function getDoctorPatientByDoc(dId: Props) {
-    const response = await api.post(`/doctor-patients/doctor/:${dId}`);
-    return response;
+    const response = await api.get(`/doctor-patients/doctor/${dId}`);
+    console.log("AOIDNAOIDNAIDNAOD", JSON.stringify(response.data, null, 2));
+    return response.data;
   }
 
   return { postDoctorPatient, getDoctorPatientByDoc };

@@ -8,13 +8,11 @@ import { useDoctorPatients } from "../../../../../hooks/useDoctorPatients";
 type CreatePatientProps = {
   isOpen: boolean;
   toggleModal: () => void;
-  setPatients: () => void;
 };
 
 export function CreatePatientModal({
   isOpen,
   toggleModal,
-  setPatients,
 }: CreatePatientProps) {
   const doctor = JSON.parse(localStorage.getItem("doctor") || "{}");
   const { postDoctorPatient } = useDoctorPatients();
@@ -69,7 +67,6 @@ export function CreatePatientModal({
       setBirth("");
       setCity("");
       setEmail("");
-      setPatients();
       toggleModal();
     } catch (error) {
       setErrorMessage("Erro ao cadastrar paciente.");
