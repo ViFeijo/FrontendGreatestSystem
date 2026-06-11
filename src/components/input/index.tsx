@@ -10,6 +10,7 @@ export function Input({
   divide,
   mudarBorda,
   inputEmail,
+  mostrarLupa,
 }: {
   placeholder: string;
   value: string;
@@ -38,9 +39,13 @@ export function Input({
   return (
     <div className={divide ? "w-1/2" : "w-full"}>
       <div className={inputContainerClass}>
-        <Icon
-          className={`${icone ? "text-(--text-primary)" : "text-(--primary)"} w-4 h-4 shrink-0 {mostrarLupa? block || hidde}`}
-        />
+        {mostrarLupa && (
+          <Icon
+            className={`w-4 h-4 shrink-0 ${
+              icone ? "text-(--text-primary)" : "text-(--primary)"
+            }`}
+          />
+        )}
         <input
           type={type || "text"}
           placeholder={placeholder}

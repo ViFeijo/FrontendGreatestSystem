@@ -1,62 +1,59 @@
-export function Lista({ pacientes }: { pacientes: any[] }) {
+type Patient = {
+  id: string;
+  name: string;
+  email: string;
+  birth_date: string;
+  phone: string;
+};
+
+type Props = {
+  patients: Patient[];
+};
+
+export function PatientsList({ patients }: Props) {
   return (
-    <div className="w-full">
-      <div className="bg-white border-2 border-[#B0B5C3] rounded-[16px] overflow-hidden">
-        <table className="w-full text-sm">
-          <thead className="mx-4">
-            <tr className="border-b-2 border-[#B0B5C3]">
-              <th className="px-4 py-3 text-left text-[#8A8FA3] font-medium">
+    <section className="flex items-center justify-center min-h-screen w-full overflow-x-hidden">
+      <div className="w-[90%] max-w-[1200px] h-[90vh] bg-[var(--card)] overflow-hidden rounded-[2em]">
+        <table className="w-full h-full text-sm">
+          <thead>
+            <tr className="border-b border-[var(--border)]">
+              <th className="px-6 py-4 text-left font-medium text-[var(--text-auxiliary)]">
                 Nome
               </th>
-              <th className="px-4 py-3 text-left text-[#8A8FA3] font-medium">
-                Idade
+              <th className="px-6 py-4 text-left font-medium text-[var(--text-auxiliary)]">
+                Email
               </th>
-              <th className="px-4 py-3 text-left text-[#8A8FA3] font-medium">
+              <th className="px-6 py-4 text-left font-medium text-[var(--text-auxiliary)]">
+                Data de nascimento
+              </th>
+              <th className="px-6 py-4 text-left font-medium text-[var(--text-auxiliary)]">
                 Telefone
-              </th>
-              <th className="px-4 py-3 text-left text-[#8A8FA3] font-medium">
-                Último atendimento
-              </th>
-              <th className="px-4 py-3 text-left text-[#8A8FA3] font-medium">
-                Próxima consulta
               </th>
             </tr>
           </thead>
           <tbody>
-            {pacientes.map((p, i) => (
+            {patients.map((p) => (
               <tr
-                key={i}
-                className="border-b border-[#EDEEF2] hover:bg-[#F7F8FA] transition-colors"
+                key={p.id}
+                className="border-b border-[var(--border)] hover:bg-[var(--hover)] transition-colors"
               >
-                <td className="px-4 py-4">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold shrink-0 ${p.cor}`}
-                    >
-                      {p.iniciais}
-                    </div>
-                    <div>
-                      <p className="font-semibold text-[#1A1D23]">{p.nome}</p>
-                      <p className="text-xs text-[#8A8FA3]">{p.email}</p>
-                    </div>
-                  </div>
+                <td className="px-6 py-4 text-[var(--text-primary)]">
+                  {p.name}
                 </td>
-                <td className="px-4 py-4 text-[#4B5563]">{p.idade}</td>
-                <td className="px-4 py-4 text-[#4B5563]">{p.telefone}</td>
-                <td className="px-4 py-4 text-[#4B5563]">
-                  {p.ultimoAtendimento}
+                <td className="px-6 py-4 text-[var(--text-secondary)]">
+                  {p.email}
                 </td>
-                <td className="px-4 py-4 text-[#4B5563]">
-                  {p.proximaConsulta}
+                <td className="px-6 py-4 text-[var(--text-secondary)]">
+                  {p.birth_date}
+                </td>
+                <td className="px-6 py-4 text-[var(--text-secondary)]">
+                  {p.phone}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <div className="px-4 py-3 text-xs text-[#8A8FA3] border-t border-[#EDEEF2]">
-          Mostrando 1–{pacientes.length} de X pacientes
-        </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -3,8 +3,8 @@ import { Input } from "../../../../../components/input";
 import { DefaultButton } from "../../../../../components/button";
 import { ModalBase } from "../../../../../components/BaseModal/modal";
 
-import { useAppointment } from "../../../hooks/useAppointments";
-import { usePatients } from "../../../hooks/usePatients";
+import { useAppointment } from "../../../../../hooks/useAppointments";
+import { usePatients } from "../../../../../hooks/usePatients";
 
 type CreateAppointmentsProps = {
   isOpen: boolean;
@@ -12,7 +12,7 @@ type CreateAppointmentsProps = {
 };
 
 type Patient = {
-  UUID: string;
+  id: string;
   name: string;
 };
 
@@ -29,16 +29,19 @@ export function CreateAppointmentsModal({
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isHidden, setIsHidden] = useState(true);
   const doctor = JSON.parse(localStorage.getItem("doctor") || "{}");
 
   const [patientsInfo, setPatientsInfo] = useState<Patient[]>([]);
   async function showPatient() {
     const infos = await getPatientInfo(name);
-    setPatientsInfo([infos.data]);
+    setPatientsInfo(infos);
+    setIsHidden(false);
+    console.log(patientsInfo);
   }
 
   function resetError() {
-    setInterval(() => {
+    setTimeout(() => {
       setErrorMessage("");
     }, 5000);
   }
@@ -73,22 +76,37 @@ export function CreateAppointmentsModal({
   }
 
   return (
-    <ModalBase isOpen={isOpen} onClose={toggleModal} title="Cadastrar Paciente">
+    <ModalBase isOpen={isOpen} onClose={toggleModal} title="Nova consulta">
       <div className="flex flex-col">
         <Input
           placeholder="Nome completo do paciente"
           mostrarLupa={false}
           value={name}
-          onChange={(name) => {
-            setName(name);
+          onChange={(value) => {
+            setName(value);
+
+            if (value.length < 3) {
+              setPatientsInfo([]);
+              setIsHidden(true);
+              return;
+            }
+
             showPatient();
           }}
         />
 
-        <div>
+        <div className={`cursor-pointer ${isHidden ? "hidden" : "block"}`}>
           {patientsInfo.map((patient) => {
             return (
-              <button key={patient.UUID} value={patient.UUID} className="flex">
+              <button
+                key={patient.id}
+                className="flex"
+                onClick={() => {
+                  setName(patient.name);
+                  setId(patient.id);
+                  setIsHidden(true);
+                }}
+              >
                 {patient.name}
               </button>
             );
@@ -121,7 +139,7 @@ export function CreateAppointmentsModal({
           onChange={setStartTime}
         />
         <Input
-          placeholder="A consulta começa às:"
+          placeholder="A consulta acaba às:"
           mostrarLupa={false}
           value={endTime}
           onChange={setEndTime}

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Input } from "../../../../../components/input";
 import { DefaultButton } from "../../../../../components/button";
-import { usePatients } from "../../../hooks/usePatients";
+import { usePatients } from "../../../../../hooks/usePatients";
 import { ModalBase } from "../../../../../components/BaseModal/modal";
+import { useDoctorPatients } from "../../../../../hooks/useDoctorPatients";
 
 type CreatePatientProps = {
   isOpen: boolean;
@@ -13,15 +14,19 @@ type CreatePatientProps = {
 export function CreatePatientModal({
   isOpen,
   toggleModal,
+  setPatients,
 }: CreatePatientProps) {
+  const doctor = JSON.parse(localStorage.getItem("doctor") || "{}");
+  const { postDoctorPatient } = useDoctorPatients();
   const { postPatients } = usePatients();
   const [name, setName] = useState("");
   const [birth, setBirth] = useState("");
   const [city, setCity] = useState("");
+  const [email, setEmail] = useState("");
 
   const [errorMessage, setErrorMessage] = useState("");
   function verifyLength() {
-    if (!name.trim() || !birth || !city.trim()) {
+    if (!name.trim() || !birth || !city.trim() || !email.trim()) {
       setErrorMessage("Todos os campos precisam estar preenchidos.");
       resetError();
       return;
@@ -48,19 +53,25 @@ export function CreatePatientModal({
   }
   async function handlePostPatients() {
     try {
-      await postPatients({
+      const response = await postPatients({
         name,
         birth_date: birth,
         city,
+        email,
       });
+      const response2 = await postDoctorPatient({
+        pId: response.id,
+        dId: doctor.id,
+      });
+      console.log(response2);
+
       setName("");
       setBirth("");
       setCity("");
+      setEmail("");
+      setPatients();
       toggleModal();
-    } catch (error: any) {
-      console.log("STATUS:", error.response?.status);
-      console.log("ERROR:", error.response?.data);
-
+    } catch (error) {
       setErrorMessage("Erro ao cadastrar paciente.");
       resetError();
     }
@@ -79,6 +90,12 @@ export function CreatePatientModal({
           mostrarLupa={false}
           value={city}
           onChange={setCity}
+        />
+        <Input
+          placeholder="Email do paciente"
+          mostrarLupa={false}
+          value={email}
+          onChange={setEmail}
         />
 
         <Input
